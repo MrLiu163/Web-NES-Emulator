@@ -1,0 +1,16 @@
+{
+  "name": "little-overlord-nes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node tests/core.test.js && node tests/save-list.test.js && node tests/mapper74.test.js && node tests/sprites.test.js && node tests/mapper25.test.js && node tests/mapper15.test.js"
+  },
+  "dependencies": {
+    "jsnes": "2.1.0",
+    "vite": "^7.1.0"
+  }
+}

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { defaultSaveName, orderedSaves, moveSave } from '../src/save-list.js';
+assert.equal(defaultSaveName('超级玛丽', Date.UTC(2026,9,3,8,9,10)), '超级玛丽 2026-10-03 16:09:10');
+const old={id:'old:1',gameId:'g',date:100};
+const newer={id:'new',gameId:'g',date:200};
+const deleted={id:'deleted',gameId:'g',date:300,deletedAt:400};
+const foreign={id:'other',gameId:'h',date:500};
+assert.deepEqual(orderedSaves([old,newer,deleted,foreign],'g'),[newer,old]);
+const moved=moveSave([newer,old],'new','old:1');
+assert.deepEqual(moved,[old,newer]);
+assert.deepEqual(orderedSaves(moved.map((s,order)=>({...s,order})),'g').map(s=>s.id),['old:1','new']);
+assert.deepEqual(moveSave(moved,'missing','old:1'),moved);
+assert.equal(old.order,undefined);
+const restored={...deleted};delete restored.deletedAt;
+assert.equal(orderedSaves([old,restored],'g').length,2);
+console.log('PASS: default name and timezone, legacy saves, game isolation, delete/undo, persistent ordering and move boundaries');
