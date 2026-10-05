@@ -2,6 +2,12 @@
 
 本地 Web NES 模拟器，使用 JSNES 2.1.0，并扩展 Mapper 74（Waixing MMC3）支持。没有远程服务，游戏文件和存档通过 IndexedDB 保存在浏览器中，不上传文件。
 
+## 在线使用
+
+https://MrLiu163.github.io/Web-NES-Emulator/
+
+推送到 `main` 后，GitHub Actions 会自动测试、构建并部署到 GitHub Pages。游戏和存档仍保存在访问者自己的浏览器中。在线站点与本地开发地址的游戏库独立。
+
 ## 启动
 
 首次运行 `npm install`，然后：
